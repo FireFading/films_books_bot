@@ -1,0 +1,16 @@
+aiogram
+# aiogram_tests
+alembic
+asyncpg
+cachetools
+aiocron
+psycopg2-binary
+pydantic
+pydantic_settings
+selenium
+orjson
+pytz
+sqlalchemy
+python-dotenv
+emoji
+aiofiles
