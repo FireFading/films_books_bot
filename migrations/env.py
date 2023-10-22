@@ -8,6 +8,8 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from app.models.books import *  #ruff: noqa F403
 from app.models.users import *  #ruff: noqa F403
 from app.models.films import *  #ruff: noqa F403
+from app.models.users_books import *
+from app.models.users_films import *
 from alembic import context
 from app.config import settings
 

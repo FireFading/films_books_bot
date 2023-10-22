@@ -1,8 +1,9 @@
 import uuid
 
 from app.database import Base
-from sqlalchemy import Column, ForeignKey, text
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, Text, text
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 
 
 class UserFilm(Base):
@@ -15,4 +16,10 @@ class UserFilm(Base):
         server_default=text("gen_random_uuid()"),
     )
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-    film_id = Column(ForeignKey("films.id"), UUID(as_uuid=True), nullable=False)
+    film_id = Column(UUID(as_uuid=True), ForeignKey("films.id"), nullable=False)
+
+    comment = Column(Text, nullable=True)
+    is_done = Column(Boolean, default=False)
+    rating = Column(Integer, nullable=True)
+
+    film = relationship("Film", lazy="joined", backref="user_films")

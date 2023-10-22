@@ -5,11 +5,13 @@ import sys
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from app.config import settings
+from app.handlers.films.base import router as film_router
 from app.handlers.users import router as user_router
 
 
 def setup_handlers(dp: Dispatcher) -> None:
     dp.include_router(user_router)
+    dp.include_router(film_router)
 
 
 async def main() -> None:

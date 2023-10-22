@@ -21,3 +21,4 @@ class Book(Base):
     description = Column(String(500))
     price = Column(Float, nullable=False)
     pdf = Column(LargeBinary)
+    rating = Column(Float)

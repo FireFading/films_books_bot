@@ -14,10 +14,43 @@ class Film(Base):
         default=uuid.uuid4,
         server_default=text("gen_random_uuid()"),
     )
-    name = Column(String, nullable=True)
-    title = Column(String(255), nullable=False)
-    release_date = Column(Date)
-    genre = Column(String(50))
-    director = Column(String(255))
-    description = Column(Text)
-    rating = Column(Float)
+    title = Column(String(255), nullable=False, unique=True)
+    release_date = Column(Date, nullable=True)
+    genre = Column(String(50), nullable=True)
+    director = Column(String(255), nullable=True)
+    description = Column(Text, nullable=True)
+    rating = Column(Float, nullable=True)
+
+    def display(self):
+        return (
+            f"Название: {self.title}\n"
+            + self.pretty_release_date
+            + self.pretty_genre
+            + self.pretty_director
+            + self.pretty_description
+            + self.pretty_rating
+        )
+
+    @property
+    def pretty_release_date(self) -> str:
+        return (
+            f"Дата выхода: {self.release_date.strftime('%d.%m.%Y')}\n"
+            if self.release_date
+            else ""
+        )
+
+    @property
+    def pretty_genre(self) -> str:
+        return f"Жанр: {self.genre}\n" if self.genre else ""
+
+    @property
+    def pretty_director(self) -> str:
+        return f"Режиссёр: {self.director}\n" if self.director else ""
+
+    @property
+    def pretty_description(self) -> str:
+        return f"Описание: {self.description}\n" if self.description else ""
+
+    @property
+    def pretty_rating(self) -> str:
+        return f"Рейтинг: {self.rating}\n" if self.rating else ""
